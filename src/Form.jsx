@@ -3,89 +3,55 @@ import DisplayProduct from "./DisplayProduct";
 import "./Form.css";
 
 const Form = () => {
-  const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({
-    image: "",
-    title: "",
-    price: "",
-    category: "",
-  });
+  const [product, setProductList] = useState([]);
+  const [title, setTitle] = useState("");
+  const [img, setImg] = useState("");
+  const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setProducts([...products, newProduct]);
-    setNewProduct({
-      image: "",
-      title: "",
-      price: "",
-      category: "",
-    });
-  };
+    const newData = {
+      title,
+      img,
+      price,
+      category,
+      id: product.length ? product[product.length] + 1 : 1,
+    };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setNewProduct({ ...newProduct, [name]: value });
+    setProductList([...product, newData]);
   };
-
   return (
     <div>
-      <div className="form-container">
-        <form onSubmit={handleSubmit}>
-          <label className="form-label">
-            Image URL:
-            <input
-              type="text"
-              name="image"
-              value={newProduct.image}
-              onChange={handleChange}
-              className="form-input"
-            />
-          </label>
-          <br />
-          <label className="form-label">
-            Title:
-            <input
-              type="text"
-              name="title"
-              value={newProduct.title}
-              onChange={handleChange}
-              className="form-input"
-            />
-          </label>
-          <br />
-          <label className="form-label">
-            Price:
-            <input
-              type="number"
-              name="price"
-              value={newProduct.price}
-              onChange={handleChange}
-              className="form-input"
-            />
-          </label>
-          <br />
-          <label className="form-label">
-            Category:
-            <input
-              type="text"
-              name="category"
-              value={newProduct.category}
-              onChange={handleChange}
-              className="form-input"
-            />
-          </label>
-          <br />
-          <button type="submit" className="form-button">
-            Add Product
-          </button>
-        </form>
+      <form onSubmit={handleSubmit} id="form">
+        <div className="input-Div">
+          <label>Title</label>
+          <input type="text" onChange={(e) => setTitle(e.target.value)} />
+        </div>
+        <div className="input-Div">
+          <label>Image</label>
+          <input type="text" onChange={(e) => setImg(e.target.value)} />
+        </div>
+        <div className="input-Div">
+          <label>Price</label>
+          <input type="text" onChange={(e) => setPrice(e.target.value)} />
+        </div>
+        <div className="input-Div">
+          <label>Category</label>
+          <input type="text" onChange={(e) => setCategory(e.target.value)} />
+        </div>
+        <div id="submit-btn">
+          <input type="submit" />
+        </div>
+      </form>
+
+      <div id="product-title">
+        <h3>Product List</h3>
       </div>
-      <div>
-        <ul>
-          {products.map((product, index) => (
-            <DisplayProduct key={index} index={index} product={product} />
-          ))}
-        </ul>
+      <div id="product-parent-div">
+        {product.map((elem) => (
+          <DisplayProduct id={elem.id} product={elem} />
+        ))}
       </div>
     </div>
   );

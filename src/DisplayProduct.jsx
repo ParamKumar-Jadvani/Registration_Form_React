@@ -1,17 +1,15 @@
 import React from "react";
 import "./DisplayProduct.css";
 
-const DisplayProduct = ({ index, product }) => {
-  console.log(index, product);
-
-  if (!product) return null;
+const DisplayProduct = ({ id, product }) => {
   return (
-    <li className="product-list-item">
-      <img src={product.image} alt={product.title} className="product-image" />
-      <h2 className="product-title">{product.title}</h2>
-      <p className="product-price">Price: {product.price}</p>
-      <p className="product-category">Category: {product.category}</p>
-    </li>
+    <div key={id} className="product-div">
+      <img src={product.image} alt={product.title} />
+      <h2>{product.title}</h2>
+      <p>Price: {product.price}</p>
+      <p>Category: {product.category}</p>
+      <button onClick={() => console.log("Delete product")}>Delete</button>
+    </div>
   );
 };
 
