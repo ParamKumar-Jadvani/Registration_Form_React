@@ -8,7 +8,7 @@
 }
 
 .product-div {
-  height: 350px;
+  height: 400px;
   display: flex;
 
   flex-direction: column;
@@ -26,5 +26,19 @@
     margin-top: 8px;
   }
   button {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    transition: all 0.3 ease-out;
+  }
+  button:hover {
+    background-color: #45a049;
   }
 }
