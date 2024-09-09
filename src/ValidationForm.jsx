@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Form.css";
 import { Bounce, toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ValidationForm = () => {
   const [title, setTitle] = useState("");
